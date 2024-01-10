@@ -1,0 +1,202 @@
+def PointSum(student_points):
+    total_points = sum(sum(points.values()) for points in student_points.values())
+    return total_points
+
+def PointAverage(student_points):
+    total_points = PointSum(student_points)
+    average = total_points / (3 * len(student_points))
+    return average
+
+def PointMaxMin(student_points):
+    all_points = [points for points in student_points.values()]
+    flat_points = [point for points in all_points for point in points.values()]
+    min_point = min(flat_points)
+    max_point = max(flat_points)
+    return [min_point, max_point]
+
+# Tạo từ điển rỗng
+StudentPoint = {}
+
+# Nhập điểm từ người dùng
+while True:
+    user_input = input("Nhập điểm (nhập 'exit' để kết thúc): ")
+    if user_input.lower() == 'exit':
+        break
+
+    try:
+        diem1 = float(user_input)
+    except ValueError:
+        print("Vui lòng nhập một số hoặc 'exit'.")
+        continue
+
+    diem2 = float(input("Nhập điểm 2: "))
+    diem3 = float(input("Nhập điểm 3: "))
+
+    student_name = "Sinh viên " + str(len(StudentPoint) + 1)
+    StudentPoint[student_name] = {"Điểm 1": diem1, "Điểm 2": diem2, "Điểm 3": diem3}
+
+# Gọi các hàm đã định nghĩa
+total_points = PointSum(StudentPoint)
+average_points = PointAverage(StudentPoint)
+min_max_points = PointMaxMin(StudentPoint)
+
+# Hiển thị kết quả
+print(f"Tổng số điểm: {total_points}")
+print(f"Điểm trung bình: {average_points}")
+print(f"Điểm thấp nhất và cao nhất: {min_max_points}")
+
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+def pointsum(diemQT):
+    return sum(diemQT.values())
+
+def pointaverage(diemQT):
+    return sum(diemQT.values()) / len(diemQT)
+
+def pointMaxMin(diemQT):
+    diem_list = list(diemQT.values())
+    return [min(diem_list), max(diem_list)]
+
+def main():
+    DiemQT = {}
+    so_lan_nhap = 0
+    gioi_han_nhap = 3
+
+    while so_lan_nhap < gioi_han_nhap:
+        ten_diem = input("Nhập tên cột điểm ('exit' để thoát): ")
+
+        if ten_diem.lower() == 'exit':
+            break
+
+        try:
+            diem = float(input("Nhập số điểm: "))
+            DiemQT[ten_diem] = diem
+            so_lan_nhap += 1
+        except ValueError:
+            print("Vui lòng nhập một số hợp lệ.")
+
+    print("Tổng điểm:", pointsum(DiemQT))
+    print("Điểm trung bình:", pointaverage(DiemQT))
+    print("Điểm thấp nhất và cao nhất:", pointMaxMin(DiemQT))
+
+if __name__ == "__main__":
+    main()
+----------------------------------------------------
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Tạo hai mảng dữ liệu ngẫu nhiên với độ dài là 10
+x_data = np.random.rand(10)
+y_data = np.random.rand(10)
+
+# Vẽ đồ thị phân tán
+plt.scatter(x_data, y_data, label='Mối quan hệ giữa hai mảng dữ liệu')
+
+# Thêm tiêu đề và nhãn cho các trục
+plt.title('Đồ thị phân tán')
+plt.xlabel('Dữ liệu trục x')
+plt.ylabel('Dữ liệu trục y')
+
+# Hiển thị chú giải
+plt.legend()
+
+# Hiển thị đồ thị
+plt.show()
+----------------------------------
+import numpy as np
+
+# a. Tạo ma trận 3x3 chứa các số nguyên ngẫu nhiên từ 1 đến 10
+matrix = np.random.randint(1, 11, (3, 3))
+print("Ma trận ngẫu nhiên 3x3:")
+print(matrix)
+
+# b. Tính tổng, giá trị lớn nhất và giá trị nhỏ nhất của ma trận
+sum_matrix = np.sum(matrix)
+max_value = np.max(matrix)
+min_value = np.min(matrix)
+print("\nTổng các phần tử trong ma trận:", sum_matrix)
+print("Giá trị lớn nhất trong ma trận:", max_value)
+print("Giá trị nhỏ nhất trong ma trận:", min_value)
+
+# c. Lọc và tạo mảng một chiều chứa các phần tử lớn hơn giá trị trung bình
+average_value = np.mean(matrix)
+filtered_array = matrix[matrix > average_value]
+print("\nMảng sau khi lọc các phần tử lớn hơn giá trị trung bình:")
+print(filtered_array)
+---------------------------------------------------
+class Sach:
+    def __init__(self, MaSach, TieuDe, TacGia, NamXuatBan):
+        self.MaSach = MaSach
+        self.TieuDe = TieuDe
+        self.TacGia = TacGia
+        self.NamXuatBan = NamXuatBan
+
+    def thanhTien(self):
+        pass
+
+    def __str__(self):
+        return f"MaSach: {self.MaSach}, TieuDe: {self.TieuDe}, TacGia: {self.TacGia}, NamXuatBan: {self.NamXuatBan}"
+
+
+class SachGiaoKhoa(Sach):
+    def __init__(self, MaSach, TieuDe, TacGia, NamXuatBan, SoTrang, PhuThu):
+        super().__init__(MaSach, TieuDe, TacGia, NamXuatBan)
+        self.SoTrang = SoTrang
+        self.PhuThu = PhuThu
+
+    def thanhTien(self):
+        return self.SoTrang * 200 + self.PhuThu
+
+    def __str__(self):
+        return super().__str__() + f", SoTrang: {self.SoTrang}, PhuThu: {self.PhuThu}"
+
+
+class SachTieuThieu(Sach):
+    def __init__(self, MaSach, TieuDe, TacGia, NamXuatBan, SoTrang, TheLoai, Rating):
+        super().__init__(MaSach, TieuDe, TacGia, NamXuatBan)
+        self.SoTrang = SoTrang
+        self.TheLoai = TheLoai
+        self.Rating = Rating
+
+    def thanhTien(self):
+        return self.SoTrang * 500 + 0.01 * self.Rating * (self.SoTrang * 500)
+
+    def __str__(self):
+        return super().__str__() + f", SoTrang: {self.SoTrang}, TheLoai: {self.TheLoai}, Rating: {self.Rating}"
+
+
+class QuanLyQuanSach:
+    def __init__(self):
+        self.danhSachSach = []
+
+    def themSach(self, sach):
+        self.danhSachSach.append(sach)
+
+    def hienThiSach(self):
+        for sach in self.danhSachSach:
+            print(sach)
+
+    def tongGiaSach(self):
+        return sum(sach.thanhTien() for sach in self.danhSachSach)
+
+
+# Tạo đối tượng QuanLyQuanSach
+quan_ly_sach = QuanLyQuanSach()
+
+# Tạo và thêm vào danh sách một số sách
+sach_giao_khoa = SachGiaoKhoa("GK001", "Toan cao cap", "Nguyen Van A", 2022, 300, 1000)
+sach_tieu_thieu = SachTieuThieu("TT001", "Harry Potter", "J.K. Rowling", 2005, 500, "Fantasy", 4)
+
+quan_ly_sach.themSach(sach_giao_khoa)
+quan_ly_sach.themSach(sach_tieu_thieu)
+
+# Hiển thị thông tin sách và tổng giá sách
+print("Thông tin sách:")
+quan_ly_sach.hienThiSach()
+print("\nTổng giá sách:", quan_ly_sach.tongGiaSach())
